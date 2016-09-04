@@ -1,0 +1,19 @@
+{
+    "markers": [
+      { "title": "Parque Eduardo Guinle",
+        "coor": {"lat": -22.9311, "lng": -43.1839}
+      },
+      { "title": "Museu Carmen Miranda",
+        "coor": {"lat": -22.941499, "lng": -43.172976}
+      },
+      { "title": "Praça São Salvador",
+        "coor": {"lat": -22.9341, "lng": -43.1807}
+      },
+      { "title": "Castelinho do Flamengo",
+        "coor": {"lat": -22.9302488, "lng": -43.1767872}
+      },
+      { "title": "Aterro do Flamengo",
+        "coor": {"lat": -22.9331, "lng": -43.1774}
+      }
+    ]
+}

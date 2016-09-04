@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mapp</title>
+      <meta name="viewport" content="initial-scale=1.0">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/master.css" media="screen">
+  </head>
+  <body>
+    <img src="img/menu-icon.svg" alt="menu-icon" class="menu-toggle" id="menu-toggle" onclick="toggleMenu()"/>
+    <div id="menu" class="menu">
+      <h1 class="filter-header"> Locations </h1>
+      <input data-bind="value: filter.text, event: { input: filter.filterMarkers }, valueUpdate:['afterkeydown','propertychange','input']" placeholder="🔎 Search" class="search-input" type="text" name="search-box">
+      <ul class="filter-list" data-bind="foreach: markers">
+      <li class="marker-list-item" data-bind="if: filtered">
+        <span data-bind="text: title, click: focusOnMarker"></span>
+      </li>
+      </ul>
+    </div>
+    <div id="map" class="map">
+      <div class="loading-screen">
+        <img src="img/loading.svg" alt="loading map"/>
+        <p>
+          Loading...
+        </p>
+      </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <script src="js/maps.integration.js"></script>
+    <script src="js/wikipedia.integration.js"></script>
+    <script src="js/auxiliar.ui.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWBr5QHUE5p9bEeWmtJhJ1BwDPDoZW7WU&callback=initMap"
+        async defer></script>
+  </body>
+</html>

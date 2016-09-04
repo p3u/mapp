@@ -1,0 +1,99 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  overflow-y: hidden;
+  background-color: #000000;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.loading-screen {
+  width: 100%;
+  text-align: center;
+  padding-top: 35vh;
+}
+
+.map {
+  height: 100vh;
+  width: calc(100vw - 280px);
+  float: right;
+  background-color: #e5e3df;
+}
+
+.menu {
+  float: left;
+  background-color: #000000;
+  color: #ffffff;
+  height: 100vh;
+  width: 280px;
+  text-align: center;
+}
+
+.info-view-image {
+  float: left;
+  margin-right: 15px;
+}
+
+.info-view-attribution {
+  clear: both;
+  float:right;
+}
+
+.filter-list {
+  cursor: pointer;
+  line-height: 40px;
+  font-size: 18px;
+}
+
+.marker-list-item:hover {
+  color: #6ddade;
+}
+
+.search-input {
+  border-radius: 5px;
+  height: 10px;
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.info-view-body {
+    max-height:300px;
+    overflow-y:auto;
+}
+
+
+@media (max-width: 899px) {
+  .menu-toggle {
+    position: absolute;
+    right:20px;
+    top: 20px;
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 1000;
+    display: inline;
+  }
+  .info-view-body {
+      max-height:50vh;
+      overflow-y:auto;
+      width: 100%;
+  }
+  .menu {
+    display: none;
+  }
+  .map {
+    width: 100%;
+  }
+}
