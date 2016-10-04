@@ -3,6 +3,11 @@
 // On every input, the function filterMarkers is called
 var VM = {
     markers: ko.observableArray(),
+    selectedMarker: ko.observable({
+      text: ko.observable(),
+      img: ko.observable(),
+    }),
+
     filter: {
               text: ko.observable(),
               filterMarkers: filterMarkers
@@ -11,8 +16,20 @@ var VM = {
 
 // Centralizes on the clicked location, closes every InfoWindows
 // Opens the selected location InfoWindow
+// Amimate marker
 // If on small devices, closes the menu
 function focusOnMarker(){
+  VM.selectedMarker().text(this.infoViewContent);
+  VM.selectedMarker().img(this.infoViewImage);
+
+  // Animating Marker
+  var focusedMarker = this.mapsMarker;
+  focusedMarker.setAnimation(google.maps.Animation.BOUNCE);
+  setTimeout(function() {
+       focusedMarker.setAnimation(null)
+   }, 1460);
+
+   // Hidding Menu on Mobile and Centering Map
   if ($("#menu-toggle").is(":visible")){
     toggleMenu(this.coor, this)
   }
@@ -21,8 +38,10 @@ function focusOnMarker(){
     VM.markers().forEach(function( marker ) {
       marker.mapsInfoWindows.setMap(null);
     })
-    this.mapsInfoWindows.open(map, this.mapsMarker);
+    this.mapsInfoWindows.open(map, focusedMarker);
   }
+  debugger
+  ko.applyBindings(VM, document.getElementById(this.id))
 }
 
 
@@ -57,7 +76,6 @@ function loadMarkers( callbackFn, url ) {
 // Also creates the markers and InfoWindows on the map
 function createMarkers( markersData ) {
   var Wikipedia = WikipediaAPI();
-  console.log(Wikipedia)
   markersData.forEach( function(x){
 
     // Creating the markers observables
@@ -79,6 +97,8 @@ function createMarkers( markersData ) {
       content: infoViewContent(marker.title, marker.id)
     })
 
+
+
    //Fetching the content from Wikipedia
    Wikipedia.fetchContent( marker.title, marker.id );
 
@@ -89,6 +109,10 @@ function createMarkers( markersData ) {
        marker.mapsInfoWindows.setMap(null);
      })
      marker.mapsInfoWindows.open(map, marker.mapsMarker);
+     VM.selectedMarker().text(marker.infoViewContent);
+     VM.selectedMarker().img(marker.infoViewImage);
+     ko.applyBindings(VM, document.getElementById(marker.id))
+
      Wikipedia.fetchContent( marker.title, marker.id , true);
    });
 
@@ -96,7 +120,7 @@ function createMarkers( markersData ) {
 }
 
 function init() {
-  ko.applyBindings( VM );
+  ko.applyBindings( VM )
   loadMarkers ( createMarkers, "https://api.myjson.com/bins/2b3wk" );
 }
 

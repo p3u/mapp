@@ -14,22 +14,14 @@ function WikipediaAPI(){
                  return marker.id === id;
                })[0]
 
-               // Opens the infowindow to input the received text
-               if (!isOpen) {
-                 marker.mapsInfoWindows.open(map, marker.mapsMarker);
-               }
                for (var pageId in data.query.pages) {
                   if (data.query.pages.hasOwnProperty(pageId)) {
-                    $( "#" + id + " .info-view-content").html(data.query.pages[pageId].extract);
+                    marker.infoViewContent = data.query.pages[pageId].extract;
                   }
               }
-               // Closes the infowindow after receiving the input text
-               if (!isOpen) {
-                 marker.mapsInfoWindows.close();
-               }
            },
            error: function (errorMessage) {
-             $( "#" + id + " .info-view-content").html("Couldn't fetch contents from Wikipedia. Check you console for more info");
+             marker.infoViewContent = "Couldn't fetch contents from Wikipedia. Check you console for more info";
              console.log(errorMessage);
            }
        });
@@ -48,23 +40,14 @@ function WikipediaAPI(){
                var marker = VM.markers().filter(function(marker){
                  return marker.id === id;
                })[0]
-
-               // Opens the infowindow to input the received image
-               if (!isOpen) {
-                 marker.mapsInfoWindows.open(map, marker.mapsMarker);
-               }
                for (var pageId in data.query.pages) {
                   if (data.query.pages.hasOwnProperty(pageId)) {
-                    $( "#" + id + " .info-view-image").html("<img src=" + data.query.pages[pageId].thumbnail.source + ">");
+                    marker.infoViewImage = data.query.pages[pageId].thumbnail.source;
                   }
               }
-               // Closes the infowindow after receiving the input image
-               if (!isOpen){
-                 marker.mapsInfoWindows.close();
-                }
            },
            error: function (errorMessage) {
-             $( "#" + id + " .info-view-image").html("Couldn't fetch the picture from Wikipedia. Check you console for more info");
+             marker.infoViewImage = "Couldn't fetch the picture from Wikipedia. Check you console for more info";
              console.log(errorMessage);
            }
        });
@@ -84,7 +67,7 @@ function WikipediaAPI(){
              self.getArticleImage(data.query.search[0].title, id, isOpen);
            },
            error: function (errorMessage) {
-             $( "#" + id + " .info-view-content").html("Couldn't fetch contents from Wikipedia. Check you console for more info");
+             marker.infoViewContent = "Couldn't fetch contents from Wikipedia. Check you console for more info";
              console.log(errorMessage);
            }
        });
