@@ -40,7 +40,7 @@ function focusOnMarker(){
     })
     this.mapsInfoWindows.open(map, focusedMarker);
   }
-  debugger
+  ko.cleanNode(document.getElementById(this.id));
   ko.applyBindings(VM, document.getElementById(this.id))
 }
 
@@ -111,6 +111,7 @@ function createMarkers( markersData ) {
      marker.mapsInfoWindows.open(map, marker.mapsMarker);
      VM.selectedMarker().text(marker.infoViewContent);
      VM.selectedMarker().img(marker.infoViewImage);
+     ko.cleanNode(document.getElementById(marker.id));
      ko.applyBindings(VM, document.getElementById(marker.id))
 
      Wikipedia.fetchContent( marker.title, marker.id , true);
