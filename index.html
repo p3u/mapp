@@ -15,7 +15,7 @@
       <input data-bind="value: filter.text, event: { input: filter.filterMarkers }, valueUpdate:['afterkeydown','propertychange','input']" placeholder="🔎 Search" class="search-input" type="text" name="search-box">
       <ul class="filter-list" data-bind="foreach: markers">
       <li class="marker-list-item" data-bind="if: filtered">
-        <span data-bind="text: title, click: focusOnMarker"></span>
+        <span class="list-item" data-bind="text: title, click: focusOnMarker"></span>
       </li>
       </ul>
     </div>
