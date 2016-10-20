@@ -21,6 +21,9 @@ function WikipediaAPI() {
                     }
                 },
                 error: function (errorMessage) {
+                    var marker = VM.markers().filter(function (marker) {
+                        return marker.id === id;
+                    })[0];
                     marker.infoViewContent = "Couldn't fetch contents from Wikipedia. Check you console for more info";
                     console.log(errorMessage);
                 }
@@ -48,6 +51,9 @@ function WikipediaAPI() {
                     }
                 },
                 error: function (errorMessage) {
+                  var marker = VM.markers().filter(function (marker) {
+                      return marker.id === id;
+                  })[0];
                     marker.infoViewImage = "Couldn't fetch the picture from Wikipedia. Check you console for more info";
                     console.log(errorMessage);
                 }
@@ -68,6 +74,9 @@ function WikipediaAPI() {
                     self.getArticleImage(data.query.search[0].title, id, isOpen);
                 },
                 error: function (errorMessage) {
+                    var marker = VM.markers().filter(function (marker) {
+                        return marker.id === id;
+                    })[0];
                     marker.infoViewContent = "Couldn't fetch contents from Wikipedia. Check you console for more info";
                     console.log(errorMessage);
                 }
